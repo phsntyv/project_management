@@ -7,6 +7,27 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 Mo
 
 
+def categorize_client(row):
+    """Catégorise un client selon son profil."""
+    statut = str(row.get("statut_client", "")).strip().lower()
+    satisfaction = float(row.get("satisfaction", 0)) if row.get("satisfaction") else 0
+    dernier_achat_jours = int(row.get("dernier_achat_jours", 0)) if row.get("dernier_achat_jours") else 0
+    risque_churn = str(row.get("risque_churn", "")).strip().lower()
+    potentiel_upsell = float(row.get("potentiel_upsell", 0)) if row.get("potentiel_upsell") else 0
+
+    if statut == "inactif" or dernier_achat_jours > 365:
+        return "Churned"
+    if risque_churn == "élevé":
+        return "À risque"
+    if statut == "actif" and satisfaction >= 8 and potentiel_upsell > 40:
+        return "VIP"
+    if statut == "actif" and satisfaction >= 7:
+        return "Loyal"
+    if statut in ["prospect", "nouveau"]:
+        return "Prospect"
+    return "Actif"
+
+
 def get_recommendation(row):
     """Génère une recommandation cohérente pour chaque client."""
     statut = str(row.get("statut_client", "")).strip()
@@ -55,12 +76,13 @@ def upload():
     records = df.to_dict(orient="records")
 
     for record in records:
+        record["_categorie"] = categorize_client(record)
         record["_recommandation"] = get_recommendation(record)
 
     return jsonify(
         {
             "message": f"Fichier « {file.filename} » importé avec succès.",
-            "columns": columns + ["Recommandation"],
+            "columns": columns + ["Catégorie", "Recommandation"],
             "row_count": len(records),
             "rows": records,
         }

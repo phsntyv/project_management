@@ -21,6 +21,18 @@ function renderTable(columns, rows) {
     thead.innerHTML = '<tr>' + columns.map(c => `<th>${escapeHtml(c)}</th>`).join('') + '</tr>';
     tbody.innerHTML = rows.map(row => {
         let cells = columns.map(c => {
+            if (c === 'Catégorie') {
+                const categorie = row._categorie;
+                const categoryClass = {
+                    'VIP': 'category-vip',
+                    'Loyal': 'category-loyal',
+                    'Actif': 'category-actif',
+                    'À risque': 'category-risk',
+                    'Churned': 'category-churned',
+                    'Prospect': 'category-prospect'
+                }[categorie] || 'category-default';
+                return `<td><span class="category ${categoryClass}">${escapeHtml(categorie)}</span></td>`;
+            }
             if (c === 'Recommandation') {
                 const rec = row._recommandation;
                 return `<td><span class="recommendation recommendation-${rec.priority}">${escapeHtml(rec.text)}</span></td>`;
