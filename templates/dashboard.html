@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Portefeuille Clients</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design tokens ───────────────────────────────────────── */
+    :root {
+      --ink:      #0e0e0e;
+      --paper:    #f5f0e8;
+      --cream:    #ede8dc;
+      --rule:     #c8c0b0;
+      --accent:   #c94a1e;   /* editorial rust-red */
+      --accent-2: #2b5fa3;   /* steel blue */
+      --mono:     "DM Mono", monospace;
+      --serif:    "DM Serif Display", serif;
+      --sans:     "DM Sans", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .shell {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── Top bar ─────────────────────────────────────────────── */
+    .topbar {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      border-bottom: 1.5px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .topbar-brand {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      letter-spacing: .02em;
+    }
+    .topbar-brand span { color: var(--accent); }
+    .topbar-nav { display: flex; gap: 1.5rem; }
+    .topbar-nav a {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--rule);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .topbar-nav a:hover,
+    .topbar-nav a.active { color: var(--paper); }
+    .topbar-nav a.active {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    .sidebar {
+      border-right: 1.5px solid var(--rule);
+      padding: 2rem 1.25rem;
+      background: var(--cream);
+    }
+    .sidebar-section { margin-bottom: 2rem; }
+    .sidebar-label {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-bottom: .75rem;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .45rem .6rem;
+      border-radius: 4px;
+      font-size: .85rem;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .sidebar-item:hover { background: var(--rule); }
+    .sidebar-item.active { background: var(--ink); color: var(--paper); }
+    .sidebar-icon { font-size: 1rem; opacity: .8; }
+
+    /* ── Main content ─────────────────────────────────────────── */
+    .main {
+      padding: 2.5rem 2.5rem 3rem;
+      overflow-y: auto;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .page-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+    .page-title em { color: var(--accent); font-style: italic; }
+    .page-date {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--rule);
+      letter-spacing: .05em;
+    }
+
+    /* ── KPI grid ─────────────────────────────────────────────── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── KPI card ─────────────────────────────────────────────── */
+    .kpi-card {
+      position: relative;
+      padding: 1.75rem 1.5rem 1.5rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 6px;
+      background: #fff;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+    .kpi-card--accent { border-left: 4px solid var(--accent); }
+    .kpi-card--blue   { border-left: 4px solid var(--accent-2); }
+
+    .kpi-card__corner {
+      position: absolute;
+      top: 0; right: 0;
+      width: 56px; height: 56px;
+      border-bottom-left-radius: 100%;
+      background: var(--paper);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: .35rem .45rem;
+      font-size: 1.1rem;
+    }
+
+    .kpi-card__label {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-bottom: .6rem;
+    }
+
+    .kpi-card__value {
+      font-family: var(--serif);
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--ink);
+      transition: all .4s ease;
+    }
+    .kpi-card__value.loading {
+      color: var(--rule);
+      font-size: 1.8rem;
+    }
+
+    .kpi-card__sub {
+      margin-top: .5rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--rule);
+    }
+
+    /* pulse animation while loading */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .35; }
+    }
+    .kpi-card__value.loading { animation: pulse 1.4s infinite; }
+
+    /* count-up animation class */
+    .kpi-card__value.counted { animation: none; }
+
+    /* ── Empty state ─────────────────────────────────────────── */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      border: 1.5px dashed var(--rule);
+      border-radius: 6px;
+      color: var(--rule);
+      text-align: center;
+    }
+    .empty-state__icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .empty-state__text { font-family: var(--mono); font-size: .8rem; line-height: 1.6; }
+
+    /* ── Refresh btn ─────────────────────────────────────────── */
+    .refresh-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .4rem .9rem;
+      font-family: var(--sans);
+      font-size: .76rem;
+      font-weight: 500;
+      border: 1.5px solid var(--rule);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .refresh-btn:hover { border-color: var(--ink); background: var(--cream); }
+    .refresh-btn svg { transition: transform .4s; }
+    .refresh-btn.spinning svg { transform: rotate(360deg); }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-brand">Port<span>.</span>folio</div>
+    <nav class="topbar-nav">
+      <a href="/">Import</a>
+      <a href="/dashboard" class="active">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Vues</div>
+      <div class="sidebar-item active">
+        <span class="sidebar-icon">◈</span> Vue globale
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <div class="page-header">
+      <h1 class="page-title">Vue <em>globale</em><br>du portefeuille</h1>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:.5rem">
+        <span class="page-date" id="current-date"></span>
+        <button class="refresh-btn" id="refresh-btn">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M10.5 6A4.5 4.5 0 1 1 6 1.5" stroke-linecap="round"/>
+            <path d="M10.5 1.5v3h-3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Actualiser
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI grid -->
+    <div class="kpi-grid" id="kpi-grid">
+      <!-- Total clients — primary KPI -->
+      <div class="kpi-card kpi-card--accent">
+        <div class="kpi-card__corner">👥</div>
+        <div class="kpi-card__label">Total clients</div>
+        <div class="kpi-card__value loading" id="kpi-total">—</div>
+        <div class="kpi-card__sub" id="kpi-total-sub">En attente de données</div>
+      </div>
+    </div>
+
+
+
+  </main>
+</div>
+
+<script>
+  /* ── Helpers ─────────────────────────────────────────────── */
+  const $ = id => document.getElementById(id);
+
+  // Live date
+  const pad = n => String(n).padStart(2, '0');
+  const now = new Date();
+  $('current-date').textContent =
+    `${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
+
+  // Animated count-up
+  function countUp(el, target, duration = 900) {
+    const start = performance.now();
+    const from  = parseInt(el.textContent.replace(/\D/g, '')) || 0;
+    function step(ts) {
+      const progress = Math.min((ts - start) / duration, 1);
+      const ease     = 1 - Math.pow(1 - progress, 3);   // ease-out cubic
+      el.textContent = Math.round(from + (target - from) * ease).toLocaleString('fr-FR');
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ── Fetch KPIs ──────────────────────────────────────────── */
+  async function loadKPIs() {
+    const btn = $('refresh-btn');
+    btn.classList.add('spinning');
+
+    try {
+      const res  = await fetch('/api/kpis');
+      const data = await res.json();
+
+      const valEl = $('kpi-total');
+      const subEl = $('kpi-total-sub');
+
+      valEl.classList.remove('loading');
+      valEl.classList.add('counted');
+
+      if (data.has_data) {
+        countUp(valEl, data.total_clients);
+        subEl.textContent = `${data.total_clients.toLocaleString('fr-FR')} enregistrement(s) chargé(s)`;
+      } else {
+        valEl.textContent = '0';
+        subEl.textContent = 'Importez un CSV pour commencer';
+      }
+    } catch (e) {
+      $('kpi-total').textContent = 'ERR';
+      $('kpi-total-sub').textContent = 'Impossible de contacter le serveur';
+    } finally {
+      setTimeout(() => btn.classList.remove('spinning'), 500);
+    }
+  }
+
+  /* ── Events ────────────────────────────────────────────── */
+
+  /* ── Init ────────────────────────────────────────────────── */
+  loadKPIs();
+</script>
+</body>
+</html>
