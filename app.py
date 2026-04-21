@@ -82,10 +82,57 @@ def upload():
         "rows": records,
     })
 
+@app.route("/api/at-risk-clients")
+@login_required
+def at_risk_clients():
+    """Return the list of clients at risk (Élevé or Moyen)."""
+    rows = _data_store["rows"]
+    at_risk = []
+    for row in rows:
+        risque = row.get("risque_churn", "").lower()
+        if risque in ["élevé", "moyen", "high"]:
+            at_risk.append({
+                "id_client": row.get("id_client", ""),
+                "segment": row.get("segment", ""),
+                "region": row.get("region", ""),
+                "risque_churn": row.get("risque_churn", ""),
+                "chiffre_affaires": row.get("chiffre_affaires", 0),
+                "statut_client": row.get("statut_client", ""),
+            })
+    return jsonify({
+        "at_risk_clients": at_risk,
+        "count": len(at_risk),
+    })
 
 @app.route("/api/kpis")
 @login_required
 def kpis():
+    """Return dashboard KPIs computed from the last uploaded dataset."""
+    rows = _data_store["rows"]
+    total_clients = len(rows)
+    total_ca = 0.0
+    clients_at_risk = 0
+
+    # Calcul du CA total
+    for row in rows:
+        try:
+            ca = float(row.get("chiffre_affaires", 0))
+            total_ca += ca
+        except (ValueError, TypeError):
+            pass
+
+    # Calcul du nombre de clients à risque
+    for row in rows:
+        risque = row.get("risque_churn", "").lower()
+        if risque in ["élevé", "moyen", "high"]:
+            clients_at_risk += 1
+
+    return jsonify({
+        "total_clients": total_clients,
+        "total_ca": round(total_ca, 2),
+        "clients_at_risk": clients_at_risk,
+        "has_data": total_clients > 0,
+    })
     """Return dashboard KPIs computed from the last uploaded dataset."""
     rows = _data_store["rows"]
     total_clients = len(rows)

@@ -196,6 +196,26 @@
       color: var(--rule);
     }
 
+    .at-risk-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .at-risk-table th, .at-risk-table td {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--rule);
+    }
+    .at-risk-table th {
+      font-weight: 500;
+      background: var(--cream);
+    }
+    .at-risk-table tr:hover {
+      background: rgba(0,0,0,0.02);
+    }
+
     /* pulse animation while loading */
     @keyframes pulse {
       0%, 100% { opacity: 1; }
@@ -296,6 +316,31 @@
         <div class="kpi-card__value loading" id="kpi-ca">—</div>
         <div class="kpi-card__sub" id="kpi-ca-sub">En attente de données</div>
       </div>
+      <div class="kpi-card kpi-card--accent">
+        <div class="kpi-card__corner">⚠️</div>
+        <div class="kpi-card__label">Clients à risque</div>
+        <div class="kpi-card__value loading" id="kpi-at-risk">—</div>
+        <div class="kpi-card__sub" id="kpi-at-risk-sub">En attente de données</div>
+      </div>
+    </div>
+
+    <div class="at-risk-section" id="at-risk-section" style="margin-top: 2rem; display: none;">
+      <h3 style="margin-bottom: 1rem; font-family: var(--serif);">Clients à risque</h3>
+      <div class="at-risk-table-container">
+        <table class="at-risk-table" id="at-risk-table">
+          <thead>
+            <tr>
+              <th>ID Client</th>
+              <th>Segment</th>
+              <th>Région</th>
+              <th>Risque</th>
+              <th>CA</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="at-risk-table-body"></tbody>
+        </table>
+      </div>
     </div>
 
 
@@ -361,6 +406,19 @@
       caValEl.textContent = '0';
       caSubEl.textContent = 'Importez un CSV pour commencer';
     }
+
+    // Risk
+    const riskValEl = $('kpi-at-risk');
+    const riskSubEl = $('kpi-at-risk-sub');
+    riskValEl.classList.remove('loading');
+    riskValEl.classList.add('counted');
+    if (data.has_data && data.clients_at_risk !== undefined) {
+      countUp(riskValEl, data.clients_at_risk);
+      riskSubEl.textContent = `${data.clients_at_risk} client(s) à risque élevé ou moyen`;
+    } else {
+      riskValEl.textContent = '0';
+      riskSubEl.textContent = 'Importez un CSV pour commencer';
+    }
   } catch (e) {
     $('kpi-total').textContent = 'ERR';
     $('kpi-total-sub').textContent = 'Impossible de contacter le serveur';
@@ -368,9 +426,41 @@
     $('kpi-ca-sub').textContent = 'Impossible de contacter le serveur';
   } finally {
     setTimeout(() => btn.classList.remove('spinning'), 500);
+    loadAtRiskClients();
   }
 }
 
+async function loadAtRiskClients() {
+  try {
+    const res = await fetch('/api/at-risk-clients');
+    const data = await res.json();
+    const section = $('at-risk-section');
+    const tbody = $('at-risk-table-body');
+
+    if (data.count > 0) {
+      tbody.innerHTML = '';
+      data.at_risk_clients.forEach(client => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${client.id_client}</td>
+          <td>${client.segment}</td>
+          <td>${client.region}</td>
+          <td style="color: ${client.risque_churn.toLowerCase() === 'élevé' ? '#c94a1e' : '#2b5fa3'}">
+            ${client.risque_churn}
+          </td>
+          <td>${parseFloat(client.chiffre_affaires).toLocaleString('fr-FR', {style: 'currency', currency: 'EUR'})}</td>
+          <td>${client.statut_client}</td>
+        `;
+        tbody.appendChild(row);
+      });
+      section.style.display = 'block';
+    } else {
+      section.style.display = 'none';
+    }
+  } catch (e) {
+    console.error("Error loading at-risk clients:", e);
+  }
+}
   /* ── Events ────────────────────────────────────────────── */
 
   /* ── Init ────────────────────────────────────────────────── */
