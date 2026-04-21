@@ -1,5 +1,10 @@
 import streamlit as st
 import pandas as pd
+import os
+
+# 🔒 Sécurité fichiers
+ALLOWED_EXTENSIONS = [".csv"]
+MAX_FILE_SIZE = 2 * 1024 * 1024  # 2MB
 
 # Set up page configurations
 st.set_page_config(
@@ -12,15 +17,12 @@ st.set_page_config(
 # Custom CSS for a premium look
 st.markdown("""
 <style>
-    /* Styling headers */
     .premium-header {
         font-family: 'Inter', sans-serif;
         color: #1E3A8A;
         font-weight: 700;
         margin-bottom: 20px;
     }
-    
-    /* Metrics box */
     .metric-box {
         background-color: #F8FAFC;
         border-radius: 10px;
@@ -44,7 +46,6 @@ st.markdown("""
 
 # Main Application
 def main():
-    # Sidebar navigation
     with st.sidebar:
         st.title("🤖 AIDA")
         st.caption("AI Decision Assistant")
@@ -69,6 +70,24 @@ def show_data_ingestion():
     uploaded_file = st.file_uploader("Choisissez un fichier CSV", type="csv")
 
     if uploaded_file is not None:
+
+        filename = uploaded_file.name.lower()
+
+        # 🔒 Vérification extension
+        if not any(filename.endswith(ext) for ext in ALLOWED_EXTENSIONS):
+            st.error("❌ Format non autorisé (CSV uniquement)")
+            st.stop()
+
+        # 🔒 Vérification taille
+        if uploaded_file.size > MAX_FILE_SIZE:
+            st.error("❌ Fichier trop volumineux (max 2MB)")
+            st.stop()
+
+        # 🔒 Vérification nom suspect
+        if "<" in filename or "script" in filename or ".." in filename:
+            st.error("❌ Nom de fichier suspect")
+            st.stop()
+
         try:
             df = pd.read_csv(uploaded_file)
             st.success("✅ Fichier importé avec succès !")
@@ -80,13 +99,13 @@ def show_data_ingestion():
 
         except Exception as e:
             st.error(f"❌ Erreur lors de la lecture du fichier : {str(e)}")
+
     else:
         st.info("⏳ En attente de fichier CSV...")
 
 def show_dashboard():
     st.markdown("<h2 class='premium-header'>📊 Aperçu Global des Performances</h2>", unsafe_allow_html=True)
     
-    # Placeholder KPI row
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
