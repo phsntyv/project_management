@@ -54,5 +54,14 @@ Le Product Backlog de cette application couvre 6 axes de développement majeurs 
 - **Epic 5** : Sécurité et contrôle d’accès
 - **Epic 6** : Traçabilité et qualité produit
 
+## 🎥 Démonstration et Utilisation
+Une fois l'application lancée, voici le flux d'utilisation principal :
+1. **Accès** : Ouvrez l'adresse `http://localhost:8501`.
+2. **Navigation** : Utilisez le menu latéral de gauche pour naviguer entre le **Dashboard** (visualisation) et **Ingérer des données**.
+3. **Importation** : Dans le menu *Ingérer des données*, glissez-déposez un fichier `.csv`. Une prévisualisation de la Dataframe s'affichera instantanément.
+4. **Indicateurs** : Le menu *Dashboard* affichera alors les métriques (Total Clients, Chiffre d'Affaires, Clients à Risque).
+
+*(Note: Des captures d'écran de l'interface seront ajoutées au fur et à mesure que les développements front-end avancent.)*
+
 ---
-*PS: This README completes [US-21]*
+*PS: This README completes [US-21] : En tant qu’équipe projet, je veux documenter rapidement le projet dans un README afin de faciliter la reprise et la démonstration.*
