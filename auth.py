@@ -1,3 +1,4 @@
+from functools import wraps
 from flask import session, jsonify
 
 USERS = {
@@ -18,3 +19,19 @@ def login_required(f):
             return jsonify({"error": "Accès refusé — non connecté"}), 401
         return f(*args, **kwargs)
     return decorated
+
+def admin_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if session.get("role") != "admin":
+            return jsonify({"error": "Accès refusé — droits admin requis"}), 403
+        return f(*args, **kwargs)
+    return decorated
+
+def is_authorized(role, permission):
+    """Vérifie si un rôle possède une permission donnée"""
+    permissions = {
+        "admin": ["upload", "view_dashboard", "manage_settings", "view_users"],
+        "user":  ["upload", "view_dashboard"],
+    }
+    return permission in permissions.get(role, [])

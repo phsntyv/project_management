@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AIDA — Connexion</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0c0f;
+      --surface:   #13141a;
+      --border:    #1e2028;
+      --accent:    #c8f04e;
+      --accent-dim:#8aab2a;
+      --text:      #e8e9ec;
+      --muted:     #55586a;
+      --error:     #ff5e5e;
+      --mono:      'DM Mono', monospace;
+      --display:   'Syne', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Glowing orb */
+    body::after {
+      content: '';
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200,240,78,.07) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 48px 40px 40px;
+      animation: fadeUp .5s ease both;
+    }
+
+    /* Accent corner */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 64px; height: 64px;
+      border-top: 2px solid var(--accent);
+      border-left: 2px solid var(--accent);
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; right: -1px;
+      width: 64px; height: 64px;
+      border-bottom: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+    }
+
+    .logo {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .logo span { color: var(--accent); }
+
+    .subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    input:focus {
+      border-color: var(--accent);
+    }
+    input::placeholder { color: var(--muted); }
+
+    .btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 14px;
+      background: var(--accent);
+      color: #0b0c0f;
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+    .btn:hover  { background: #d4f76a; }
+    .btn:active { transform: scale(.98); }
+    .btn:disabled { background: var(--muted); cursor: not-allowed; }
+
+    .error-msg {
+      margin-top: 16px;
+      padding: 10px 14px;
+      border-left: 3px solid var(--error);
+      background: rgba(255,94,94,.06);
+      font-size: 12px;
+      color: var(--error);
+      display: none;
+    }
+    .error-msg.visible { display: block; animation: fadeIn .2s ease; }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .hint strong { color: var(--accent); font-weight: 500; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(16px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity:0; } to { opacity:1; }
+    }
+
+    /* Loading spinner on button */
+    .btn.loading { position: relative; color: transparent; }
+    .btn.loading::after {
+      content:'';
+      position: absolute;
+      width: 16px; height: 16px;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      border: 2px solid #0b0c0f;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+    }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">AI<span>DA</span></div>
+    <div class="subtitle">Plateforme d'analyse · Connexion</div>
+
+    <div class="field">
+      <label for="username">Identifiant</label>
+      <input id="username" type="text" placeholder="ex : admin" autocomplete="username" />
+    </div>
+
+    <div class="field">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+
+    <button class="btn" id="loginBtn" onclick="handleLogin()">Se connecter</button>
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div class="divider"></div>
+
+    <div class="hint">
+      Comptes de démo :<br/>
+      <strong>admin</strong> / admin123 &nbsp;·&nbsp; <strong>user1</strong> / user123
+    </div>
+  </div>
+
+  <script>
+    // Allow Enter key to submit
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleLogin();
+    });
+
+    async function handleLogin() {
+      const btn      = document.getElementById('loginBtn');
+      const errorEl  = document.getElementById('errorMsg');
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      errorEl.classList.remove('visible');
+
+      if (!username || !password) {
+        showError('Veuillez remplir tous les champs.');
+        return;
+      }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      try {
+        const res  = await fetch('/api/login', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ username, password }),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          // Redirect based on role
+          window.location.href = data.role === 'admin' ? '/dashboard' : '/';
+        } else {
+          showError(data.error || 'Erreur de connexion.');
+        }
+      } catch (err) {
+        showError('Impossible de contacter le serveur.');
+      } finally {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('errorMsg');
+      el.textContent = msg;
+      el.classList.add('visible');
+    }
+  </script>
+</body>
+</html>
