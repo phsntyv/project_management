@@ -290,6 +290,12 @@
         <div class="kpi-card__value loading" id="kpi-total">—</div>
         <div class="kpi-card__sub" id="kpi-total-sub">En attente de données</div>
       </div>
+      <div class="kpi-card kpi-card--blue">
+        <div class="kpi-card__corner">€</div>
+        <div class="kpi-card__label">Total CA</div>
+        <div class="kpi-card__value loading" id="kpi-ca">—</div>
+        <div class="kpi-card__sub" id="kpi-ca-sub">En attente de données</div>
+      </div>
     </div>
 
 
@@ -321,34 +327,49 @@
   }
 
   /* ── Fetch KPIs ──────────────────────────────────────────── */
-  async function loadKPIs() {
-    const btn = $('refresh-btn');
-    btn.classList.add('spinning');
+  
+   async function loadKPIs() {
+  const btn = $('refresh-btn');
+  btn.classList.add('spinning');
 
-    try {
-      const res  = await fetch('/api/kpis');
-      const data = await res.json();
+  try {
+    const res  = await fetch('/api/kpis');
+    const data = await res.json();
 
-      const valEl = $('kpi-total');
-      const subEl = $('kpi-total-sub');
-
-      valEl.classList.remove('loading');
-      valEl.classList.add('counted');
-
-      if (data.has_data) {
-        countUp(valEl, data.total_clients);
-        subEl.textContent = `${data.total_clients.toLocaleString('fr-FR')} enregistrement(s) chargé(s)`;
-      } else {
-        valEl.textContent = '0';
-        subEl.textContent = 'Importez un CSV pour commencer';
-      }
-    } catch (e) {
-      $('kpi-total').textContent = 'ERR';
-      $('kpi-total-sub').textContent = 'Impossible de contacter le serveur';
-    } finally {
-      setTimeout(() => btn.classList.remove('spinning'), 500);
+    // Total clients
+    const valEl = $('kpi-total');
+    const subEl = $('kpi-total-sub');
+    valEl.classList.remove('loading');
+    valEl.classList.add('counted');
+    if (data.has_data) {
+      countUp(valEl, data.total_clients);
+      subEl.textContent = `${data.total_clients.toLocaleString('fr-FR')} enregistrement(s) chargé(s)`;
+    } else {
+      valEl.textContent = '0';
+      subEl.textContent = 'Importez un CSV pour commencer';
     }
+
+    // Total CA
+    const caValEl = $('kpi-ca');
+    const caSubEl = $('kpi-ca-sub');
+    caValEl.classList.remove('loading');
+    caValEl.classList.add('counted');
+    if (data.has_data && data.total_ca !== undefined) {
+      countUp(caValEl, data.total_ca);
+      caSubEl.textContent = `${data.total_ca.toLocaleString('fr-FR', {style: 'currency', currency: 'EUR'})}`;
+    } else {
+      caValEl.textContent = '0';
+      caSubEl.textContent = 'Importez un CSV pour commencer';
+    }
+  } catch (e) {
+    $('kpi-total').textContent = 'ERR';
+    $('kpi-total-sub').textContent = 'Impossible de contacter le serveur';
+    $('kpi-ca').textContent = 'ERR';
+    $('kpi-ca-sub').textContent = 'Impossible de contacter le serveur';
+  } finally {
+    setTimeout(() => btn.classList.remove('spinning'), 500);
   }
+}
 
   /* ── Events ────────────────────────────────────────────── */
 
