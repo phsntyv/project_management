@@ -1,0 +1,227 @@
+id_client,segment,region,canal_acquisition,nb_commandes,chiffre_affaires,date_dernier_achat,dernier_achat_jours,satisfaction,statut_client,risque_churn,potentiel_upsell,cout_support
+C0082,PME,Marseille,Commercial,11,2743.75,2024-06-05,685,6.9,À relancer,Moyen,37.4,61.53
+C0060,PME,Lille,Partenaire,3,859.32,2026-03-12,40,5.4,Actif,faible,81.5,125.87
+C0121,Association,Marseille,Commercial,13,3899.56,2025-02-16,429,6.4,Inactif,Moyen,51.4,167.97
+C0072,Grand compte,Lille,Commercial,9,7365.74,2025-08-07,257,8.3,À relancer,Moyen,64.9,67.3
+C0011,PME,Bordeaux,Email,11,3548.26,2026-01-30,81,7.4,À relancer,Faible,51.8,120.31
+C0001,PME,Paris,Email,6,6723.13,2025-08-14,250,7.7,Inactif,Moyen,53.4,77.99
+C0189,Particulier,Lille,Web,10,2587.18,2024-06-17,673,7.1,À relancer,Moyen,71.4,13.75
+C0022,Particulier,Lille,Commercial,4,1289.99,2025-04-16,370,10.0,Inactif,Moyen,51.0,18.33
+C0051,GRAND COMPTE,Lyon,Commercial,7,9522.89,2024-12-10,497,7.1,Inactif,Moyen,52.0,123.79
+C0090,Particulier,Paris,Partenaire,9,1696.3,2025-02-01,444,7.6,Inactif,Moyen,38.2,235.21
+C0216,Particulier,Marseille,Commercial,8,752.16,2025-11-23,149,7.3,Actif,Faible,20.0,31.86
+C0013,Particulier,Marseille,Email,5,1811.51,2025-09-19,214,10.0,Inactif,Moyen,40.2,90.76
+C0081,Association,Bordeaux,Téléphone,9,3259.52,2025-02-23,422,6.2,Actif,Moyen,44.1,0.0
+C0110,Particulier,Bordeaux,Web,6,1396.83,2025-01-09,467,8.6,Inactif,Moyen,42.1,114.99
+C0127,Particulier,Marseille,Commercial,3,642.49,2025-05-21,335,8.8,Inactif,Moyen,42.2,30.51
+C0031,Particulier,Marseille,Téléphone,4,1108.9,2024-10-16,552,7.8,À relancer,Moyen,41.9,167.61
+C0102,Association,Bordeaux,Téléphone,9,1838.86,2024-06-16,674,6.6,Actif,Moyen,41.0,65.0
+C0219,Association,Lyon,Téléphone,9,2346.35,2025-01-04,472,4.1,Inactif,Élevé,59.0,17.12
+C0129,Grand compte,Marseille,Web,6,2065.39,2024-12-26,481,5.6,Actif,Moyen,70.7,136.57
+C0007,Particulier,Marseille,Email,9,748.42,2024-08-11,618,,Inactif,Moyen,47.2,243.04
+C0052,Grand compte,Paris,Téléphone,6,23401.47,2025-03-29,388,9.2,Actif,Moyen,50.5,314.71
+C0118,Particulier,Marseille,Partenaire,13,723.38,2024-12-30,477,7.4,Inactif,Moyen,20.2,170.35
+C0073,Grand compte,Paris,Commercial,7,15197.33,2025-07-12,283,11.0,Actif,Élevé,75.0,162.61
+C0086,GRAND COMPTE,Nantes,Email,10,2241.67,2025-07-10,285,9.1,À relancer,Moyen,67.7,63.99
+C0163,Association,Marseille,Commercial,12,1488.1,2025-12-26,116,6.8,À relancer,Moyen,83.4,105.93
+C0167,PME,Bordeaux,Partenaire,9,4822.94,2025-03-28,389,6.3,Inactif,Moyen,97.2,191.75
+C0020,Particulier,Toulouse,Commercial,-1,777.27,2025-11-26,146,8.8,Actif,Faible,46.1,140.58
+C0025,Particulier,Nantes,Partenaire,10,2510.4,2024-12-28,479,6.8,Inactif,Moyen,39.6,45.39
+C0177,Grand compte,Lille,Partenaire,11,9069.18,2025-06-30,295,6.4,Inactif,Moyen,64.4,74.58
+DUP003,Particulier,Lyon,Email,8,265.26,2025-11-07,165,7.5,À relancer,Moyen,47.6,168.85
+C0130,PME,Marseille,Téléphone,9,0.0,2024-06-25,665,9.7,Actif,Moyen,70.5,183.96
+C0071,PME,Toulouse,Email,7,5778.25,2025-09-25,208,4.6,Inactif,Élevé,34.5,56.12
+C0043,PME,Lille,Téléphone,12,5973.28,2024-09-14,584,4.9,Inactif,Élevé,72.3,44.81
+C0044,Particulier,Nantes,Commercial,7,644.99,2025-10-09,194,6.2,Actif,Moyen,37.9,37.18
+C0131,Association,Paris,Web,7,1954.22,2025-08-11,253,7.6,Inactif,Moyen,24.0,223.9
+C0204,Particulier,Bordeaux,Commercial,5,883.54,2026-03-08,44,8.8,Actif,Faible,30.6,141.27
+C0010,Grand compte,Lille,Téléphone,10,20418.63,2024-04-30,721,2.4,Actif,Élevé,57.1,96.87
+C0162,PME,Nantes,Commercial,7,5912.25,2025-01-25,451,7.7,Inactif,Moyen,78.1,335.0
+C0057,PME,Bordeaux,Partenaire,7,6641.83,2025-11-11,161,8.9,Actif,Faible,92.7,200.69
+C0059,PME,Lyon,Commercial,14,6907.22,2025-12-20,122,7.3,À relancer,Faible,31.2,242.36
+C0017,Grand compte,Bordeaux,Web,9,12597.53,2025-08-30,234,4.7,À relancer,Élevé,82.6,100.83
+C0058,PME,Bordeaux,Téléphone,9,10315.86,2026-02-10,70,7.5,Actif,Faible,60.9,123.75
+C0116,Particulier,Marseille,Partenaire,10,826.1,2026-01-29,82,7.7,Actif,Faible,7.5,165.07
+C0036,Association,Lyon,Email,6,3680.21,2024-10-28,540,7.3,À relancer,Moyen,49.5,124.35
+C0169,PME,Lille,Web,8,4738.83,2025-09-21,212,5.1,Inactif,Moyen,64.3,103.35
+C0016,Association,Toulouse,Partenaire,3,1039.77,2025-09-09,224,7.5,Inactif,faible,61.0,226.01
+C0154,Particulier,Toulouse,Partenaire,6,1617.51,2025-05-18,338,5.8,Inactif,Moyen,45.4,144.34
+C0142,Grand compte,Toulouse,Téléphone,9,5620.92,2025-01-31,445,7.5,Inactif,Moyen,,108.19
+C0126,PME,Paris,Commercial,8,3803.37,2025-12-04,138,9.4,À relancer,Faible,82.6,180.98
+C0037,Particulier,Lyon,Partenaire,11,1748.8,2024-05-15,706,4.6,Inactif,Élevé,36.8,11.6
+C0067,Particulier,Bordeaux,Partenaire,10,818.55,2024-05-01,720,4.0,Inactif,Élevé,59.4,117.52
+C0141,Grand compte,Paris,Commercial,6,22415.68,2025-04-16,370,9.9,Inactif,Moyen,,268.33
+DUP005,Grand compte,Paris,Commercial,7,15197.33,2025-07-12,283,11.0,Actif,Élevé,75.0,162.61
+C0134,Particulier,Lille,Partenaire,8,1006.23,2025-12-25,117,6.8,À relancer,Moyen,46.1,185.26
+C0207,Particulier,Lille,Email,14,0.0,2026-01-09,102,4.6,À relancer,Moyen,15.0,149.09
+C0096,Particulier,Marseille,Partenaire,14,829.49,2025-06-09,316,5.3,Inactif,Moyen,52.4,210.35
+C0159,Particulier,Marseille,Web,9,1765.64,2024-04-26,725,6.2,Inactif,Moyen,47.3,267.05
+C0019,Association,Toulouse,Email,9,1005.11,2025-09-16,217,7.6,Inactif,Moyen,,150.83
+C0015,PME,Lyon,Téléphone,9,7177.56,2025-01-03,473,8.3,Inactif,Moyen,69.5,187.79
+C0054,Association,Bordeaux,Partenaire,9,4061.26,2024-06-13,677,6.7,À relancer,Moyen,26.5,0.0
+C0210,Association,Marseille,Partenaire,5,1121.45,2024-05-12,709,8.4,Inactif,Moyen,53.3,157.01
+C0175,Particulier,Paris,Partenaire,12,50.0,2025-09-03,230,,Inactif,Moyen,43.7,25.58
+C0158,PME,Marseille,Web,11,4300.83,2025-10-05,198,6.2,Actif,Moyen,71.6,135.24
+C0205,PME,Bordeaux,Commercial,5,4101.31,2025-03-22,395,11.0,À relancer,Moyen,52.0,225.7
+C0065,PME,Paris,Web,5,4213.24,2024-10-18,550,7.4,Inactif,Moyen,75.0,35.74
+C0178,PME,Marseille,Commercial,11,1920.3,2025-07-17,278,7.0,Inactif,Moyen,64.7,151.24
+C0041,PME,Paris,Téléphone,7,7510.99,2026-02-11,69,8.4,À relancer,Faible,45.7,174.88
+C0211,Particulier,Marseille,Partenaire,12,1360.0,2025-03-28,389,6.1,À relancer,Moyen,76.0,150.65
+C0213,Particulier,Toulouse,Email,14,1745.26,2025-09-01,232,8.0,À relancer,Moyen,49.2,253.96
+C0066,Particulier,Marseille,Web,8,983.32,2025-08-14,250,8.3,Inactif,Moyen,46.5,19.91
+C0063,Particulier,Toulouse,Email,6,819.6,2025-01-08,468,7.1,Inactif,Moyen,25.7,128.51
+C0180,PME,Lille,Email,8,4923.02,2026-03-26,26,10.0,Actif,Faible,100.0,100.69
+C0182,Association,Toulouse,Email,10,540.93,2024-09-08,590,4.2,Actif,Élevé,36.2,76.12
+C0030,Particulier,Toulouse,Email,13,1851.65,2024-07-06,654,7.2,Inactif,Moyen,29.5,195.93
+C0006,Particulier,Lyon,Téléphone,8,1851.9,2025-05-12,344,9.1,Inactif,Moyen,23.2,95.26
+C0042,Grand compte,Paris,Partenaire,4,17040.46,2025-08-21,243,8.8,Inactif,Moyen,69.0,0.0
+C0161,Particulier,Bordeaux,Commercial,9,745.47,2026-01-06,105,8.5,À relancer,Faible,41.7,82.63
+C0186,PME,Bordeaux,Téléphone,8,4835.18,2025-05-19,337,6.3,Inactif,Moyen,48.6,209.68
+C0148,Particulier,Bordeaux,Email,6,50.0,2025-05-08,348,5.3,Inactif,Élevé,48.7,192.31
+C0035,PME ,Lille,Téléphone,4,4339.29,2025-12-11,131,8.1,Inactif,Faible,37.8,152.14
+C0105,Particulier,Paris,Téléphone,10,1514.46,2024-12-21,486,7.6,Inactif,Moyen,18.5,173.47
+C0150,Particulier,Lyon,Commercial,11,684.9,2024-12-07,500,7.1,Inactif,Moyen,41.7,190.5
+C0135,Particulier,Marseille,Web,16,1139.87,2024-09-06,592,7.0,Actif,Moyen,56.3,166.23
+C0199,Particulier,Paris,Email,10,1590.38,2025-02-21,424,,Inactif,Moyen,17.8,139.72
+C0053,Particulier,Bordeaux,Commercial,9,2306.09,2025-07-03,292,8.1,Inactif,Moyen,37.6,129.1
+C0136,Particulier,Toulouse,Commercial,13,1186.26,2025-03-11,406,6.7,À relancer,Moyen,56.6,45.86
+C0132,Particulier,Lyon,Téléphone,6,1703.27,2025-12-13,129,9.3,Actif,Faible,59.9,59.46
+C0125,Association,Lille,Web,4,2503.66,2025-03-14,403,7.5,Inactif,Moyen,48.7,215.25
+C0106,Grand compte,,Commercial,8,20953.45,2024-07-16,644,7.8,Inactif,Moyen,97.3,156.28
+C0138,Particulier,Toulouse,Partenaire,7,939.02,2025-12-19,123,8.5,À relancer,Faible,74.5,88.03
+C0147,Particulier,Paris,Commercial,7,885.3,2025-05-24,332,8.3,Inactif,Moyen,60.4,333.05
+C0061,Particulier,Lille,Partenaire,7,1161.99,2024-11-02,535,2.3,Inactif,Élevé,35.4,175.7
+C0191,Grand compte,,Commercial,8,8084.52,2026-02-28,52,4.7,Actif,Moyen,89.7,94.39
+C0111,PME,Lille,Partenaire,5,2072.1,2024-08-20,609,5.4,Inactif,Moyen,68.6,231.36
+C0149,PME,Marseille,Partenaire,8,5825.45,2026-04-11,10,6.1,Actif,Faible,,79.17
+C0004,Particulier,Lyon,Partenaire,5,50.0,2025-02-16,429,7.6,Inactif,Moyen,13.4,135.75
+C0103,PME,Toulouse,Partenaire,6,5262.27,2025-05-13,343,8.8,Actif,Moyen,85.0,0.0
+C0023,Association,Lille,Commercial,7,1745.72,2026-01-18,93,9.1,À relancer,Faible,31.1,0.0
+C0184,Particulier,Lille,Commercial,7,1643.35,2024-07-10,650,6.7,À relancer,Moyen,9.2,109.4
+C0156,Particulier,Paris,Partenaire,11,2031.38,2024-05-15,706,5.1,Inactif,Moyen,30.7,136.09
+C0153,PME,Marseille,Commercial,10,5442.28,2024-10-02,566,5.3,Inactif,Moyen,61.3,198.86
+C0170,Particulier,Paris,Téléphone,5,593.68,2025-08-19,245,9.5,Inactif,Moyen,59.4,154.18
+C0064,Grand compte,Paris,Web,10,8714.23,2025-01-07,469,,Inactif,Moyen,57.8,114.43
+C0088,PME,Bordeaux,Partenaire,8,7383.2,2025-05-17,339,9.2,À relancer,Moyen,60.6,28.24
+C0212,PME,Bordeaux,Commercial,7,6267.4,2024-10-14,554,8.9,Actif,Moyen,65.7,43.51
+DUP002,PME,Marseille,Commercial,11,1920.3,2025-07-17,278,7.0,Inactif,Moyen,64.7,151.24
+C0140,Particulier,Lille,Email,10,745.51,2026-04-09,12,9.2,Inactif,Faible,59.0,174.56
+C0173,PME,Nantes,Web,6,5116.35,2024-05-18,703,7.2,Inactif,Moyen,48.8,153.92
+C0101,Particulier,Toulouse,Téléphone,6,225.6,2024-11-14,523,8.4,Inactif,Moyen,23.2,161.65
+C0194,Particulier,Paris,Partenaire,3,503.96,2025-02-28,417,6.8,Actif,Moyen,0.0,104.72
+C0151,Particulier,Nantes,Commercial,9,2157.9,2025-01-18,458,7.9,À relancer,Moyen,63.8,162.94
+C0080,Particulier,,Téléphone,11,811.17,2025-08-22,242,6.1,À relancer,Moyen,27.3,215.12
+C0196,Particulier,Toulouse,Email,4,680.44,2024-11-16,521,9.0,À relancer,Moyen,0.0,140.45
+C0218,PME,,Partenaire,9,829.41,2024-05-22,699,6.3,Inactif,Moyen,38.4,126.2
+C0120,Particulier,,Partenaire,7,577.18,2025-03-28,389,5.3,Inactif,Moyen,25.9,100.89
+C0181,Association,Bordeaux,Partenaire,8,3115.7,2024-08-28,601,8.9,À relancer,Moyen,54.5,161.29
+C0137,Particulier,Lille,Téléphone,8,773.15,2026-01-07,104,9.4,Inactif,Faible,37.3,121.18
+C0220,PME,Toulouse,Web,6,7449.01,2024-12-31,476,10.0,À relancer,Moyen,39.0,186.38
+C0024,Grand compte,Lyon,Téléphone,6,13426.7,2024-05-25,696,6.3,Inactif,Moyen,100.0,152.4
+C0155,PME,Marseille,Email,10,5702.81,2025-08-28,236,8.7,Actif,Moyen,60.2,90.65
+C0119,Particulier,Nantes,Commercial,9,1746.05,2024-08-31,598,7.3,À relancer,Moyen,41.5,218.16
+C0049,PME ,Paris,Commercial,6,595.21,2024-10-05,563,6.1,Actif,Moyen,41.0,53.52
+C0018,Grand compte,Nantes,Email,8,21377.31,2026-02-13,67,5.3,Actif,Faible,60.5,177.12
+C0188,Particulier,Marseille,Email,2,593.01,2025-12-24,118,,À relancer,Moyen,26.8,95.7
+C0217,Particulier,Toulouse,Téléphone,7,739.8,2025-10-29,174,10.0,Actif,Faible,31.4,106.93
+C0208,Particulier,Lille,Commercial,4,1696.75,2026-04-06,15,7.2,Actif,Faible,65.3,90.5
+C0192,PME,Marseille,Commercial,9,6282.14,2024-05-06,715,9.5,Inactif,Moyen,86.5,10.5
+C0056,PME,Toulouse,Email,9,5384.48,2026-02-22,58,,Actif,Faible,58.0,186.33
+C0097,Particulier,Toulouse,Email,9,1122.49,2024-10-01,567,9.2,Inactif,Moyen,58.7,189.85
+C0214,Particulier,Paris,Web,7,950.08,2025-01-22,454,4.5,Inactif,Élevé,57.8,166.02
+C0115,PME ,Nantes,Web,4,2747.37,2024-04-21,730,8.9,Inactif,HIGH,28.9,10.42
+C0005,PME,Bordeaux,Web,8,1016.75,2025-11-09,163,5.4,Inactif,Moyen,80.5,76.95
+C0197,Particulier,Nantes,Commercial,2,1235.62,2025-08-15,249,7.5,Inactif,Moyen,43.5,139.52
+C0084,Grand compte,Bordeaux,Commercial,16,12165.09,2025-09-06,227,6.5,Actif,Moyen,51.2,159.6
+C0200,Grand compte,Marseille,Web,11,32626.77,2025-07-06,289,5.7,À relancer,Moyen,32.8,134.78
+DUP004,PME,Toulouse,Partenaire,6,5262.27,2025-05-13,343,8.8,Actif,Moyen,85.0,0.0
+C0026,Association,Bordeaux,Web,6,776.97,2024-05-25,696,9.8,À relancer,Moyen,63.3,120.82
+C0215,Particulier,Paris,Web,9,596.06,2025-05-24,332,6.3,À relancer,Moyen,,88.64
+C0146,PME,Bordeaux,Commercial,7,2477.8,2024-09-15,583,8.8,Inactif,Moyen,42.8,165.36
+C0133,Particulier,Lyon,Commercial,8,2459.49,2024-05-05,716,9.8,Inactif,Moyen,54.9,167.47
+C0012,Grand compte,Nantes,Email,9,27688.11,2025-01-12,464,5.8,Inactif,Moyen,93.1,231.39
+C0176,Association,Bordeaux,Téléphone,7,1461.95,2026-02-07,73,4.9,Actif,Moyen,41.2,159.52
+C0172,PME,Paris,Téléphone,6,4145.04,2025-06-30,295,7.3,À relancer,Moyen,36.7,217.07
+C0117,Particulier,Toulouse,Téléphone,5,0.0,2024-04-28,723,6.1,Inactif,Moyen,24.8,122.68
+C0095,Association,Marseille,Partenaire,6,3609.56,2025-06-04,321,9.7,Inactif,Moyen,41.2,68.25
+C0104,Association,Lyon,Email,5,1235.9,2025-09-03,230,8.3,À relancer,Moyen,27.5,273.12
+C0093,Particulier,Bordeaux,Partenaire,5,1184.18,2024-05-18,703,10.0,À relancer,Moyen,50.5,262.53
+C0085,Association,Marseille,Email,7,879.7,2025-08-31,233,8.6,Actif,eleve,69.9,137.09
+C0089,Particulier,Marseille,Téléphone,-1,2210.64,2024-09-04,594,4.9,À relancer,Élevé,38.4,209.38
+C0079,Particulier,Paris,Email,3,501.15,2024-09-25,573,11.0,À relancer,Moyen,59.7,102.88
+C0027,PME,Lille,Email,-1,4777.41,2024-07-04,656,8.4,Inactif,Moyen,27.1,222.44
+C0198,Particulier,Lyon,Partenaire,6,1124.71,2024-11-17,520,10.0,À relancer,Moyen,26.1,116.71
+C0114,Grand compte,Bordeaux,Email,9,9335.25,2024-11-04,533,10.0,Inactif,Moyen,75.5,61.21
+C0047,Particulier,Bordeaux,Web,6,442.92,2025-08-10,254,6.0,Inactif,Élevé,73.7,190.53
+C0078,Particulier,Bordeaux,Web,10,556.94,2025-04-20,366,,Inactif,Élevé,19.9,58.58
+C0166,Particulier,Lille,Commercial,6,1214.92,2024-08-09,620,9.1,Inactif,Moyen,78.0,115.15
+C0179,PME,Paris,Partenaire,12,5919.47,2026-03-12,40,8.1,À relancer,Faible,76.1,127.17
+C0168,Particulier,Bordeaux,Partenaire,6,1082.18,2025-02-06,439,8.1,Inactif,Moyen,64.5,212.57
+C0094,PME,Toulouse,Téléphone,3,4310.5,2025-04-14,372,6.7,Inactif,Moyen,61.4,61.45
+C0164,Particulier,Paris,Partenaire,9,715.31,2024-07-16,644,6.4,Inactif,Moyen,11.9,113.35
+C0209,Particulier,Toulouse,Téléphone,10,858.94,2026-02-04,76,7.8,Actif,Faible,26.5,122.73
+C0112,Grand compte,Nantes,Partenaire,7,8661.82,2024-11-21,516,7.4,Inactif,Moyen,53.0,145.58
+C0193,Particulier,Toulouse,Partenaire,6,498.47,2025-08-19,245,7.3,À relancer,Moyen,54.8,78.94
+C0195,Association,Paris,Commercial,7,3361.82,2025-12-22,120,8.5,Inactif,Faible,48.8,121.57
+C0008,Particulier,Nantes,Partenaire,5,990.69,2025-12-15,127,7.4,À relancer,Faible,41.8,0.0
+C0039,PME,Lyon,Téléphone,10,5165.17,2026-02-15,65,7.7,Actif,Faible,95.3,145.0
+C0165,Particulier,,Partenaire,4,795.73,2025-06-14,311,9.2,Actif,Moyen,49.6,338.47
+C0002,PME,Toulouse,Partenaire,6,1392.93,2026-01-22,89,5.6,Actif,Faible,94.3,101.94
+C0074,Particulier,Lyon,Email,8,265.26,2025-11-07,165,7.5,À relancer,Moyen,47.6,168.85
+C0190,PME,Paris,Téléphone,4,4934.09,2024-11-07,530,7.4,Inactif,Moyen,52.6,94.71
+C0171,Particulier,Paris,Commercial,13,50.0,2025-01-15,461,9.5,Inactif,Moyen,60.7,210.14
+C0099,Particulier,Bordeaux,Web,8,2020.91,2025-06-14,311,7.2,Inactif,Moyen,50.9,90.35
+C0076,Association,Toulouse,Téléphone,12,3101.24,2024-10-10,558,4.7,Actif,Élevé,19.2,222.23
+C0032,Association,Paris,Partenaire,10,4624.52,2025-05-25,331,3.4,Inactif,Élevé,33.8,184.31
+C0014,PME,Toulouse,Web,7,5723.47,2024-08-06,623,6.6,Inactif,Moyen,85.9,162.12
+DUP001,Particulier,Bordeaux,Web,8,2020.91,2025-06-14,311,7.2,Inactif,Moyen,50.9,90.35
+C0033,Particulier,Marseille,Email,5,1342.68,2025-08-19,245,6.4,Actif,Moyen,51.2,189.8
+C0143,PME,Toulouse,Email,9,8398.95,2024-07-30,630,7.2,À relancer,Moyen,98.2,83.43
+C0009,Particulier,Lille,Email,7,1430.13,2024-07-17,643,8.8,Inactif,Moyen,29.4,161.06
+C0098,Particulier,Nantes,Téléphone,9,799.06,2024-07-30,630,4.3,Inactif,Élevé,56.0,134.34
+C0123,Particulier,Nantes,Web,6,1570.78,2025-03-19,398,7.3,Inactif,Moyen,,158.92
+C0128,Particulier,Bordeaux,Commercial,-1,518.85,2025-07-11,284,7.4,À relancer,Moyen,,107.32
+C0048,PME,Lyon,Commercial,8,1618.77,2025-10-16,187,11.0,Actif,Moyen,26.7,195.3
+C0083,Grand compte,Marseille,Téléphone,5,26318.75,2024-05-03,718,7.2,Inactif,Moyen,100.0,77.53
+C0038,Particulier,Toulouse,Email,10,2482.02,2025-01-28,448,4.8,À relancer,Élevé,63.6,82.47
+C0124,PME,Nantes,Téléphone,8,4362.15,2024-12-29,478,6.0,À relancer,Moy,53.7,87.13
+C0108,PME,Paris,Web,5,6721.6,2025-02-10,435,10.0,Inactif,Moyen,51.2,300.19
+C0183,PME ,Nantes,Partenaire,7,18021.59,2024-06-23,667,9.8,Inactif,Moyen,61.4,126.6
+C0050,PME,Lille,Web,11,5695.39,2026-01-16,95,4.2,À relancer,Moyen,51.7,165.65
+C0069,PME,Toulouse,Web,4,5714.1,2025-12-05,137,4.3,Actif,Moyen,100.0,177.41
+C0152,Particulier,Lyon,Commercial,11,839.0,2024-05-13,708,,Inactif,Moyen,46.0,180.87
+C0145,PME,Marseille,Téléphone,8,2011.74,2026-01-23,88,7.4,Actif,Faible,29.7,37.87
+C0144,PME,Nantes,Commercial,7,4051.92,2025-01-30,446,7.0,À relancer,Moyen,47.4,53.85
+C0109,Grand compte,,Partenaire,6,0.0,2025-01-01,475,9.8,Actif,Moyen,100.0,178.01
+C0034,Grand compte,Paris,Web,9,28990.23,2024-12-10,497,3.5,À relancer,Élevé,59.0,119.63
+C0201,Grand compte,Lille,Commercial,8,9375.0,2025-11-20,152,6.8,Actif,Moyen,74.0,149.69
+C0077,Particulier,Lille,Téléphone,9,1232.91,2025-02-05,440,8.5,Inactif,Moyen,64.5,65.33
+C0185,Association,Nantes,Email,11,3438.62,2025-02-27,418,5.2,Inactif,Moyen,56.9,164.76
+C0062,Particulier,Toulouse,Email,6,1084.83,2025-08-20,244,5.8,Inactif,Moyen,40.0,132.66
+C0070,GRAND COMPTE,Toulouse,Partenaire,3,28993.46,2025-11-13,159,10.0,Actif,Faible,44.9,160.82
+C0029,Grand compte,Marseille,Partenaire,5,22069.2,2025-10-21,182,7.9,Inactif,Moyen,52.4,190.14
+C0055,Particulier,Marseille,Téléphone,9,1598.26,2026-02-21,59,7.5,Actif,Faible,22.5,87.97
+C0028,Particulier,Lyon,Commercial,9,1345.32,2026-04-18,3,6.3,À relancer,Faible,57.7,82.84
+C0157,Particulier,Nantes,Email,9,1325.71,2024-08-26,603,8.1,À relancer,Moyen,47.0,159.13
+C0174,Particulier,Bordeaux,Partenaire,5,940.99,2024-06-13,677,7.0,À relancer,Moyen,,247.89
+C0021,Particulier,Lille,Partenaire,12,50.0,2025-07-26,269,10.0,À relancer,Moyen,53.7,0.0
+C0202,PME,Marseille,Partenaire,11,4591.03,2024-10-12,556,7.5,Inactif,Moyen,76.0,73.51
+C0113,Association,Nantes,Téléphone,12,944.35,2024-12-21,486,8.1,Inactif,Moyen,63.0,95.93
+C0203,Association,Bordeaux,Téléphone,12,2926.74,2024-05-07,714,9.9,Inactif,Moyen,33.7,119.94
+C0107,PME,Nantes,Commercial,11,1331.89,2025-03-08,409,5.2,Inactif,Moyen,96.9,52.24
+C0091,Grand compte,Nantes,Partenaire,6,21952.91,2024-11-14,523,4.3,Inactif,Élevé,52.3,199.66
+DUP006,Particulier,Marseille,Partenaire,10,826.1,2026-01-29,82,7.7,Actif,Faible,7.5,165.07
+C0087,Association,Marseille,Email,9,2421.1,2024-07-04,656,10.0,Inactif,Moyen,28.9,270.49
+C0003,Particulier,Paris,Téléphone,5,995.81,2025-08-26,238,,Inactif,Moyen,28.0,268.18
+C0068,Association,Bordeaux,Partenaire,6,2279.22,2026-04-13,8,7.5,Actif,Faible,40.4,147.81
+C0075,PME,Nantes,Partenaire,9,4956.91,2026-04-12,9,,Actif,Faible,70.4,17.86
+C0139,PME,Paris,Email,5,7277.69,2024-10-23,545,4.5,Inactif,Élevé,54.0,324.66
+C0046,PME,Toulouse,Web,8,2326.54,2026-02-18,62,8.7,Actif,Faible,65.6,197.49
+C0187,PME,Toulouse,Commercial,0,4533.83,2024-10-05,563,6.1,Actif,Élevé,84.1,37.37
+C0206,Grand compte,Toulouse,Téléphone,12,18228.03,2024-11-30,507,4.5,À relancer,Élevé,69.3,104.85
+C0040,PME,Lyon,Partenaire,10,2853.33,2025-09-08,225,7.8,Actif,eleve,96.0,129.25
+C0045,PME,Marseille,Commercial,7,4013.87,2025-02-25,420,7.0,Inactif,Moyen,,180.6
+C0122,PME,Bordeaux,Partenaire,7,4934.67,2025-09-08,225,6.8,Actif,Moyen,100.0,95.99
+C0100,Particulier,Lille,Partenaire,9,1442.55,2024-06-20,670,6.4,Inactif,faible,39.1,158.16
+C0160,Particulier,Paris,Partenaire,2,992.61,2025-06-26,299,3.8,Inactif,Élevé,7.9,182.34
+C0092,Grand compte,Lyon,Email,3,14528.94,2026-03-07,45,,Actif,Faible,85.5,32.51
