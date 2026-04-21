@@ -3,6 +3,7 @@ import io
 import pandas as pd
 from flask import Flask, jsonify, render_template, request, session
 from auth import login, login_required, is_authorized, admin_required
+from logger import log_action, get_logs
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 Mo
@@ -65,6 +66,7 @@ def upload():
             text = raw.decode("latin-1")
         df = pd.read_csv(io.StringIO(text))
     except Exception as e:
+        log_action("Import CSV", details=f"Échec {file.filename}: {str(e)}", status="error")
         return jsonify({"error": f"Erreur de parsing: {e}"}), 400
 
     df = df.fillna("")
@@ -74,6 +76,8 @@ def upload():
     # Persist data for the dashboard KPIs
     _data_store["columns"] = columns
     _data_store["rows"] = records
+
+    log_action("Import CSV", details=f"Fichier '{file.filename}' avec {len(records)} lignes", status="success")
 
     return jsonify({
         "message": f"Fichier « {file.filename} » importé avec succès.",
@@ -103,6 +107,20 @@ def at_risk_clients():
         "at_risk_clients": at_risk,
         "count": len(at_risk),
     })
+
+@app.route("/history")
+@login_required
+def history_page():
+    return render_template("history.html")
+
+
+@app.route("/api/history")
+@login_required
+def api_history():
+    logs = get_logs()
+    # Return reversed to show latest first
+    return jsonify(logs[::-1])
+
 
 @app.route("/api/kpis")
 @login_required

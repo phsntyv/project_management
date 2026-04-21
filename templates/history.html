@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historique — Portefeuille Clients</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* Design Tokens */
+    :root {
+      --ink:      #0e0e0e;
+      --paper:    #f5f0e8;
+      --cream:    #ede8dc;
+      --rule:     #c8c0b0;
+      --accent:   #c94a1e;
+      --accent-2: #2b5fa3;
+      --mono:     "DM Mono", monospace;
+      --serif:    "DM Serif Display", serif;
+      --sans:     "DM Sans", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+    }
+    
+    /* Top bar */
+    .topbar {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      border-bottom: 1.5px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .topbar-brand {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      letter-spacing: .02em;
+    }
+    .topbar-brand span { color: var(--accent); }
+    .topbar-nav { display: flex; gap: 1.5rem; }
+    .topbar-nav a {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--rule);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .topbar-nav a:hover,
+    .topbar-nav a.active { color: var(--paper); }
+    .topbar-nav a.active {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      border-right: 1.5px solid var(--rule);
+      padding: 2rem 1.25rem;
+      background: var(--cream);
+    }
+    .sidebar-section { margin-bottom: 2rem; }
+    .sidebar-label {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-bottom: .75rem;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .45rem .6rem;
+      border-radius: 4px;
+      font-size: .85rem;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .sidebar-item:hover { background: var(--rule); }
+    .sidebar-item.active { background: var(--ink); color: var(--paper); }
+    .sidebar-icon { font-size: 1rem; opacity: .8; }
+
+    /* Main content */
+    .main {
+      padding: 2.5rem 2.5rem 3rem;
+      overflow-y: auto;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .page-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+    .page-title em { color: var(--accent); font-style: italic; }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1.5px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.9rem;
+    }
+    th {
+      font-weight: 600;
+      background: var(--cream);
+      color: var(--ink);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover { background: var(--paper); }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .status-success {
+      background: #e6f4ea;
+      color: #1e8e3e;
+    }
+    .status-error {
+      background: #fce8e6;
+      color: #d93025;
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="topbar-brand">Port<span>.</span>folio</div>
+    <nav class="topbar-nav">
+      <a href="/">Import</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/history" class="active">Historique</a>
+    </nav>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Vues</div>
+      <div class="sidebar-item active">
+        <span class="sidebar-icon">◈</span> Logs système
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-header">
+      <h1 class="page-title">Historique <em>des Actions</em><br>système</h1>
+    </div>
+
+    <div>
+      <table id="history-table">
+        <thead>
+          <tr>
+            <th>Date & Heure</th>
+            <th>Action</th>
+            <th>Détails</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" style="text-align: center;">Chargement...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+  async function loadHistory() {
+    try {
+      const res = await fetch('/api/history');
+      if (!res.ok) throw new Error("Erreur de récupération");
+      const data = await res.json();
+      
+      const tbody = document.querySelector('#history-table tbody');
+      
+      if (data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--rule);">Aucun log disponible</td></tr>';
+        return;
+      }
+      
+      tbody.innerHTML = data.map(log => {
+        const d = new Date(log.timestamp);
+        const dateStr = d.toLocaleString('fr-FR');
+        const statusClass = log.status === 'success' ? 'status-success' : 'status-error';
+        const statusLabel = log.status === 'success' ? 'Succès' : 'Erreur';
+        
+        return `
+          <tr>
+            <td style="font-family: var(--mono); color: var(--accent-2);">${dateStr}</td>
+            <td style="font-weight: 500;">${log.action}</td>
+            <td style="color: #555;">${log.details}</td>
+            <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+          </tr>
+        `;
+      }).join('');
+    } catch (e) {
+      document.querySelector('#history-table tbody').innerHTML = `<tr><td colspan="4" style="text-align: center; color: red;">Erreur: ${e.message}</td></tr>`;
+    }
+  }
+
+  loadHistory();
+</script>
+</body>
+</html>
