@@ -65,21 +65,23 @@ def main():
 def show_data_ingestion():
     st.markdown("<h2 class='premium-header'>📁 Importation de données clients (CSV)</h2>", unsafe_allow_html=True)
     st.write("Veuillez charger le fichier contenant les données métier à analyser.")
-    
+
     uploaded_file = st.file_uploader("Choisissez un fichier CSV", type="csv")
-    
+
     if uploaded_file is not None:
         try:
             df = pd.read_csv(uploaded_file)
-            st.success("Fichier importé avec succès !")
-            
+            st.success("✅ Fichier importé avec succès !")
+
             st.subheader("Prévisualisation des données")
             st.dataframe(df.head(10), use_container_width=True)
-            
+
             st.info(f"Le jeu de données contient {df.shape[0]} lignes et {df.shape[1]} colonnes.")
-            
+
         except Exception as e:
-            st.error(f"Erreur lors de la lecture du fichier : {e}")
+            st.error(f"❌ Erreur lors de la lecture du fichier : {str(e)}")
+    else:
+        st.info("⏳ En attente de fichier CSV...")
 
 def show_dashboard():
     st.markdown("<h2 class='premium-header'>📊 Aperçu Global des Performances</h2>", unsafe_allow_html=True)
