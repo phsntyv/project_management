@@ -47,5 +47,63 @@ def test_error_message(client):
     assert json_data["error"] == "Aucun fichier fourni"
 
 
+def test_recommendation_critical(client):
+    """✓ Recommandation critique pour risque_churn élevé"""
+    csv_data = "id,satisfaction,risque_churn\nC001,6.5,Élevé".encode('utf-8')
+    data = {"file": (io.BytesIO(csv_data), "data.csv")}
+    response = client.post("/api/upload", data=data, content_type="multipart/form-data")
+
+    assert response.status_code == 200
+    rows = response.get_json()["rows"]
+    assert rows[0]["_recommandation"]["priority"] == "critical"
+
+
+def test_recommendation_high_relancer(client):
+    """✓ Recommandation haute pour client à relancer avec satisfaction basse"""
+    csv_data = "id,statut_client,satisfaction\nC001,À relancer,6.5".encode('utf-8')
+    data = {"file": (io.BytesIO(csv_data), "data.csv")}
+    response = client.post("/api/upload", data=data, content_type="multipart/form-data")
+
+    assert response.status_code == 200
+    rows = response.get_json()["rows"]
+    assert rows[0]["_recommandation"]["priority"] == "high"
+    assert "Relancer" in rows[0]["_recommandation"]["text"]
+
+
+def test_recommendation_high_inactif(client):
+    """✓ Recommandation haute pour client inactif depuis longtemps"""
+    csv_data = "id,statut_client,dernier_achat_jours\nC001,Inactif,200".encode('utf-8')
+    data = {"file": (io.BytesIO(csv_data), "data.csv")}
+    response = client.post("/api/upload", data=data, content_type="multipart/form-data")
+
+    assert response.status_code == 200
+    rows = response.get_json()["rows"]
+    assert rows[0]["_recommandation"]["priority"] == "high"
+    assert "Réactiver" in rows[0]["_recommandation"]["text"]
+
+
+def test_recommendation_medium_upsell(client):
+    """✓ Recommandation moyenne pour opportunité d'upsell"""
+    csv_data = "id,potentiel_upsell,statut_client\nC001,75,Actif".encode('utf-8')
+    data = {"file": (io.BytesIO(csv_data), "data.csv")}
+    response = client.post("/api/upload", data=data, content_type="multipart/form-data")
+
+    assert response.status_code == 200
+    rows = response.get_json()["rows"]
+    assert rows[0]["_recommandation"]["priority"] == "medium"
+    assert "upsell" in rows[0]["_recommandation"]["text"]
+
+
+def test_recommendation_none(client):
+    """✓ Aucune action recommandée pour client sans risque"""
+    csv_data = "id,statut_client,satisfaction,risque_churn\nC001,Actif,8.5,Faible".encode('utf-8')
+    data = {"file": (io.BytesIO(csv_data), "data.csv")}
+    response = client.post("/api/upload", data=data, content_type="multipart/form-data")
+
+    assert response.status_code == 200
+    rows = response.get_json()["rows"]
+    assert rows[0]["_recommandation"]["priority"] == "none"
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

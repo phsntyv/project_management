@@ -19,9 +19,16 @@ function showMessage(text, type) {
 
 function renderTable(columns, rows) {
     thead.innerHTML = '<tr>' + columns.map(c => `<th>${escapeHtml(c)}</th>`).join('') + '</tr>';
-    tbody.innerHTML = rows.map(row =>
-        '<tr>' + columns.map(c => `<td>${escapeHtml(row[c] ?? '')}</td>`).join('') + '</tr>'
-    ).join('');
+    tbody.innerHTML = rows.map(row => {
+        let cells = columns.map(c => {
+            if (c === 'Recommandation') {
+                const rec = row._recommandation;
+                return `<td><span class="recommendation recommendation-${rec.priority}">${escapeHtml(rec.text)}</span></td>`;
+            }
+            return `<td>${escapeHtml(row[c] ?? '')}</td>`;
+        }).join('');
+        return '<tr>' + cells + '</tr>';
+    }).join('');
 }
 
 function escapeHtml(v) {

@@ -7,6 +7,26 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 Mo
 
 
+def get_recommendation(row):
+    """Génère une recommandation cohérente pour chaque client."""
+    statut = str(row.get("statut_client", "")).strip()
+    satisfaction = float(row.get("satisfaction", 0)) if row.get("satisfaction") else 0
+    dernier_achat_jours = int(row.get("dernier_achat_jours", 0)) if row.get("dernier_achat_jours") else 0
+    risque_churn = str(row.get("risque_churn", "")).strip()
+    potentiel_upsell = float(row.get("potentiel_upsell", 0)) if row.get("potentiel_upsell") else 0
+
+    if risque_churn.lower() == "élevé" and satisfaction < 8:
+        return {"text": "🔴 Intervention urgente (churn)", "priority": "critical"}
+    if statut.lower() == "à relancer" and satisfaction < 7:
+        return {"text": "🔴 Relancer pour fidélisation", "priority": "high"}
+    if statut.lower() == "inactif" and dernier_achat_jours > 180:
+        return {"text": "🟠 Réactiver le compte", "priority": "high"}
+    if potentiel_upsell > 60 and statut.lower() == "actif":
+        return {"text": "🟢 Opportunité d'upsell", "priority": "medium"}
+
+    return {"text": "⚪ Aucune action requise", "priority": "none"}
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -34,10 +54,13 @@ def upload():
     columns = list(df.columns.astype(str))
     records = df.to_dict(orient="records")
 
+    for record in records:
+        record["_recommandation"] = get_recommendation(record)
+
     return jsonify(
         {
             "message": f"Fichier « {file.filename} » importé avec succès.",
-            "columns": columns,
+            "columns": columns + ["Recommandation"],
             "row_count": len(records),
             "rows": records,
         }
