@@ -1,0 +1,9 @@
+client_id,nom,statut_client,satisfaction,dernier_achat_jours,risque_churn,potentiel_upsell
+1,Alice Dupont,actif,9,15,faible,75
+2,Bob Martin,actif,0,30,faible,50
+3,Carol Steve,à relancer,,120,moyen,30
+4,David Lee,inactif,3,0,élevé,10
+5,Emma Wilson,prospect,0,0,moyen,60
+6,Frank Brown,actif,9,50,élevé,40
+7,Grace Taylor,actif,15,5,faible,80
+8,Henry Moore,inactif,2,380,élevé,70

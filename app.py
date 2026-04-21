@@ -1,7 +1,12 @@
 import io
+import sys
+import os
 
 import pandas as pd
 from flask import Flask, jsonify, render_template, request
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
+from data_quality import DataQualityValidator
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.config["MAX_CONTENT_LENGTH"] = 20 * 1024 * 1024  # 20 Mo
@@ -79,12 +84,17 @@ def upload():
         record["_categorie"] = categorize_client(record)
         record["_recommandation"] = get_recommendation(record)
 
+    # Détection des anomalies
+    validator = DataQualityValidator(df.dropna(how="all")).validate()
+    quality_report = validator.get_report()
+
     return jsonify(
         {
             "message": f"Fichier « {file.filename} » importé avec succès.",
             "columns": columns + ["Catégorie", "Recommandation"],
             "row_count": len(records),
             "rows": records,
+            "quality_report": quality_report,
         }
     )
 
