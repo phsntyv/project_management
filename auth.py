@@ -1,3 +1,5 @@
+from flask import session, jsonify
+
 USERS = {
     "admin": {"password": "admin123", "role": "admin"},
     "user1": {"password": "user123", "role": "user"},
@@ -9,10 +11,10 @@ def login(username, password):
         return USERS[username]["role"]
     return None
 
-def is_authorized(role, required_role="user"):
-    """Vérifie si le rôle a accès"""
-    if role is None:
-        return False
-    if required_role == "admin":
-        return role == "admin"
-    return role in ["admin", "user"]
+def login_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if "role" not in session:
+            return jsonify({"error": "Accès refusé — non connecté"}), 401
+        return f(*args, **kwargs)
+    return decorated
