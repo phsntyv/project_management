@@ -89,9 +89,19 @@ def kpis():
     """Return dashboard KPIs computed from the last uploaded dataset."""
     rows = _data_store["rows"]
     total_clients = len(rows)
+    total_ca = 0.0
+
+    # On suppose que la colonne s'appelle "chiffre_affaires"
+    for row in rows:
+        try:
+            ca = float(row.get("chiffre_affaires", 0))
+            total_ca += ca
+        except (ValueError, TypeError):
+            pass
 
     return jsonify({
         "total_clients": total_clients,
+        "total_ca": round(total_ca, 2),
         "has_data": total_clients > 0,
     })
 
